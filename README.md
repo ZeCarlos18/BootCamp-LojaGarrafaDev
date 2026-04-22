@@ -5,7 +5,6 @@ Este é o projeto final do Bootcamp de E-commerce, focado numa arquitetura Headl
 Arquitetura do Sistema
 O projeto utiliza o Adobe Commerce (Magento) para gestão de regras de negócio, o Adobe Experience Manager (AEM) como CMS Headless para gestão de conteúdos, e a Shopify para o motor de checkout, tudo consumido por um frontend Shopify Hydrogen.
 
-Snippet de código
 graph TD
     %% Definição de Estilos Profissionais
     classDef frontend fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#1e293b,font-weight:bold
