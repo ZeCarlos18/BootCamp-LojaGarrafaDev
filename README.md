@@ -25,3 +25,19 @@ graph TD
     M -- "REST API: Atributos e Precos" --> H
     AEM -- "GraphQL API: Content Fragments" --> H
     S -- "GraphQL API: Storefront e Checkout" --> H
+````
+
+## 🔄 Fluxos de Integração Construídos
+
+1. **Commerce → AEM:** O Commerce expõe uma API REST com o catálogo, e o AEM consome via Sling Model para renderizar no componente "Product Showcase".
+2. **Shopify → Hydrogen:** O Hydrogen consome o catálogo e gerencia o checkout via Storefront API (GraphQL).
+3. **AEM → Hydrogen:** O Hydrogen consome os Content Fragments do AEM (como a Garrafa Dev) via GraphQL para alimentar páginas de conteúdo.
+4. **Dashboard Central:** O Hydrogen agrega o status de saúde das três plataformas em paralelo usando `Promise.allSettled`.
+
+## 🔌 Tabela de Endpoints e APIs
+
+| Plataforma | Tecnologia | URL / Endpoint | Autenticação |
+| :--- | :--- | :--- | :--- |
+| **Adobe Commerce** | REST | `/rest/V1/bootcamp/products` | Anonymous |
+| **AEM (Experience Manager)** | GraphQL | `/content/graphql/execute.json/...` | Basic Auth (admin) |
+| **Shopify Storefront** | GraphQL | `https://[sua-loja].myshopify.com/api/2024-01/graphql.json` | Storefront API Token |
