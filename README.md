@@ -1,6 +1,6 @@
-# Loja Garrafa Dev - E-commerce Headless
+# Loja- E-commerce Headless
 
-Este é o projeto final do **Adobe Bootcamp**, focado na construção de uma arquitetura Headless e Composable. O sistema integra múltiplos microsserviços de backend a uma interface de alta performance desenvolvida em React utilizando o Shopify Hydrogen.
+Este é o projeto final do **Bootcamp**, focado na construção de uma arquitetura Headless e Composable. O sistema integra múltiplos microsserviços de backend a uma interface de alta performance desenvolvida em React utilizando o Shopify Hydrogen.
 
 ## 🏗️ Arquitetura do Sistema
 O ecossistema foi projetado para operar de forma integrada, dividindo responsabilidades entre plataformas líderes de mercado:
