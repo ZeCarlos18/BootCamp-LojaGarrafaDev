@@ -4,13 +4,10 @@ export async function loader({ context }: any) {
   const SHOPIFY_URL = context.env.PUBLIC_STORE_DOMAIN;
   const SHOPIFY_TOKEN = context.env.PUBLIC_STOREFRONT_API_TOKEN;
 
-  // Token gerado agora — expira em 1 hora, regere com:
-  // curl -sk -X POST "https://localhost/rest/V1/integration/admin/token" -H "Content-Type: application/json" -H "Host: magento2.docker" -d '{"username":"admin","password":"admin123"}'
-  const MAGENTO_ACCESS_TOKEN = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzc2OTA1MjQ0LCJleHAiOjE3NzY5MDg4NDR9.Cq41_r59-m9-3PvNFtxfHUjLizEDYUBoP174vEa4Xy0";
+  const MAGENTO_ACCESS_TOKEN = "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzc2OTEwMDQxLCJleHAiOjE3NzY5MTM2NDF9.18MnZeBjUVM5Fe1Q2-KAE5f6xEGFjSZy-bXeSI4It1w";
 
   const [magentoRes, aemRes, shopifyRes] = await Promise.allSettled([
-    // Chama localhost:443 com o header Host para o Nginx rotear corretamente
-    fetch('https://localhost/rest/V1/products?searchCriteria[pageSize]=0', {
+    fetch('https://127.0.0.1/rest/V1/products?searchCriteria[pageSize]=0', {
       headers: {
         'Authorization': `Bearer ${MAGENTO_ACCESS_TOKEN}`,
         'Accept': 'application/json',
@@ -65,18 +62,26 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50 p-10 font-sans">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tight">System Dashboard</h1>
-        <p className="text-gray-500 mb-8 font-medium">Monitoramento do Ecossistema Composable</p>
-
+        <h1 className="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tight">
+          System Dashboard
+        </h1>
+        <p className="text-gray-500 mb-8 font-medium">
+          Monitoramento do Ecossistema Composable
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { name: "Adobe Commerce", info: status.magento },
             { name: "Adobe Experience Manager", info: status.aem },
             { name: "Shopify Storefront", info: status.shopify }
           ].map((plat) => (
-            <div key={plat.name} className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex flex-col justify-between">
+            <div
+              key={plat.name}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex flex-col justify-between"
+            >
               <div>
-                <h2 className="text-lg font-bold text-gray-800 leading-tight mb-4">{plat.name}</h2>
+                <h2 className="text-lg font-bold text-gray-800 leading-tight mb-4">
+                  {plat.name}
+                </h2>
                 <div className="flex items-center gap-3">
                   <span className={`w-3 h-3 rounded-full ${plat.info.state === 'Online' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
                   <span className="font-bold text-gray-700 text-sm">{plat.info.state}</span>
